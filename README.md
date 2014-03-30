@@ -1,4 +1,5 @@
 # Puppet R project
+[![Build Status](https://travis-ci.org/deric/deric-r.svg?branch=master)](https://travis-ci.org/deric/deric-r)
 
 This module manages R project installation.
 
