@@ -25,7 +25,7 @@ class r::repo::debian(
               location   => "http://cran.r-project.org/bin/linux/${os}",
               repos      => codename,
               key        => 'E084DAB9',
-              key_source => 'keyserver.ubuntu.com',
+              key_server => 'keyserver.ubuntu.com',
               notify     => Exec['apt_get_update_for_r'],
             }
           }
@@ -34,7 +34,7 @@ class r::repo::debian(
               location   => "http://cran.r-project.org/bin/linux/${os}",
               repos      => codename,
               key        => '381BA480',
-              key_source => 'keys.gnupg.net',
+              key_server => 'keys.gnupg.net',
               notify     => Exec['apt_get_update_for_r'],
             }
           }
