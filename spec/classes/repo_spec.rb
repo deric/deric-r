@@ -10,7 +10,9 @@ describe 'r::repo' do
       :lsbdistid => operatingsystem,
     }}
 
-    it { should contain_apt__source('r-project') }
+    it { should contain_apt__source('r-project').with(
+     'location' => "http://cran.r-project.org/bin/linux/#{operatingsystem.downcase}",
+    )}
 
     context "manage_repo => false" do
       let(:params) {{ :manage_repo => false }}

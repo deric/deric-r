@@ -7,4 +7,5 @@ FORGE
 
 DEPENDENCIES
   puppetlabs/apt (>= 1.0.0)
+  puppetlabs/stdlib (>= 2.0.0)
 

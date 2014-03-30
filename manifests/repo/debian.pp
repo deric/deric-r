@@ -2,13 +2,15 @@
 class r::repo::debian(
     $manage_repo    = true,
     $package_source = 'r-project.org',
+    $codename       = $::lsbdistcodename
   ) {
 
   if $caller_module_name != $module_name {
     warning("${name} is deprecated as a public API of the ${module_name} module and should no longer be directly included in the manifest.")
   }
 
-  $codename = $::lsbdistcodename
+  # 'downcase' is function from stdlib
+  $os = downcase($::operatingsystem)
 
   anchor { 'r::apt_repo' : }
 
@@ -17,10 +19,28 @@ class r::repo::debian(
   if $manage_repo {
     case $package_source {
       'r-project.org': {
-        apt::source { 'r-project':
-          location   => "http://cran.r-project.org/bin/linux/ubuntu ${codename}",
-          repos      => 'r',
-          notify     => Exec['apt_get_update_for_r'],
+        case $os {
+          'ubuntu': {
+            apt::source { 'r-project':
+              location   => "http://cran.r-project.org/bin/linux/${os}",
+              repos      => codename,
+              key        => 'E084DAB9',
+              key_source => 'keyserver.ubuntu.com',
+              notify     => Exec['apt_get_update_for_r'],
+            }
+          }
+          'debian': {
+            apt::source { 'r-project':
+              location   => "http://cran.r-project.org/bin/linux/${os}",
+              repos      => codename,
+              key        => '381BA480',
+              key_source => 'keys.gnupg.net',
+              notify     => Exec['apt_get_update_for_r'],
+            }
+          }
+          default: {
+            fail("Module ${module_name} is not supported on ${::osfamily}, os: ${::operatingsystem}")
+          }
         }
       }
       default: {}
