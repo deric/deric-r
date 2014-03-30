@@ -18,6 +18,7 @@ describe 'r' do
       end
 
       it { should contain_package('r-base') }
+      it { should contain_package('r-base-dev') }
 
       context 'enable apt repository' do
         let(:params) {{
