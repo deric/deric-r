@@ -12,7 +12,7 @@ describe 'r::repo' do
 
     it { should contain_apt__source('r-project').with(
      'location' => "http://cran.r-project.org/bin/linux/#{operatingsystem.downcase}",
-     'repos'    => lsbdistcodename
+     'repos'    => "#{lsbdistcodename}/"
     )}
 
     context "manage_repo => false" do

@@ -22,20 +22,22 @@ class r::repo::debian(
         case $os {
           'ubuntu': {
             apt::source { 'r-project':
-              location   => "http://cran.r-project.org/bin/linux/${os}",
-              repos      => $codename,
-              key        => 'E084DAB9',
-              key_server => 'keyserver.ubuntu.com',
-              notify     => Exec['apt_get_update_for_r'],
+              location    => "http://cran.r-project.org/bin/linux/${os}",
+              repos       => "${codename}/",
+              include_src => false,
+              key         => 'E084DAB9',
+              key_server  => 'keyserver.ubuntu.com',
+              notify      => Exec['apt_get_update_for_r'],
             }
           }
           'debian': {
             apt::source { 'r-project':
-              location   => "http://cran.r-project.org/bin/linux/${os}",
-              repos      => $codename,
-              key        => '381BA480',
-              key_server => 'keys.gnupg.net',
-              notify     => Exec['apt_get_update_for_r'],
+              location    => "http://cran.r-project.org/bin/linux/${os}",
+              repos       => "${codename}/",
+              include_src => false,
+              key         => '381BA480',
+              key_server  => 'keys.gnupg.net',
+              notify      => Exec['apt_get_update_for_r'],
             }
           }
           default: {
