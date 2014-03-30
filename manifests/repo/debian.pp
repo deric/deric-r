@@ -23,7 +23,9 @@ class r::repo::debian(
           'ubuntu': {
             apt::source { 'r-project':
               location    => "http://cran.r-project.org/bin/linux/${os}",
-              repos       => "${codename}/",
+              # the '/' must be present, otherwise repo name is required
+              release     => "${codename}/",
+              repos       => '', # default repo is main (not present at cran)
               include_src => false,
               key         => 'E084DAB9',
               key_server  => 'keyserver.ubuntu.com',
@@ -33,7 +35,9 @@ class r::repo::debian(
           'debian': {
             apt::source { 'r-project':
               location    => "http://cran.r-project.org/bin/linux/${os}",
-              repos       => "${codename}/",
+              # the '/' must be present, otherwise repo name is required
+              release     => "${codename}/",
+              repos       => '', # default repo is main (not present at cran)
               include_src => false,
               key         => '381BA480',
               key_server  => 'keys.gnupg.net',
