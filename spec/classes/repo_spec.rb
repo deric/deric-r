@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'r::repo' do
 
-  shared_examples 'debian' do |operatingsystem, lsbdistcodename|
+  shared_examples 'debian' do |operatingsystem, lsbdistcodename, release|
     let(:facts) {{
       :operatingsystem => operatingsystem,
       :osfamily => 'Debian',
@@ -12,7 +12,8 @@ describe 'r::repo' do
 
     it { should contain_apt__source('r-project').with(
      'location' => "http://cran.r-project.org/bin/linux/#{operatingsystem.downcase}",
-     'repos'    => ''
+     'repos'    => '',
+     'release'  => "#{release}/"
     )}
 
     context "manage_repo => false" do
@@ -22,8 +23,8 @@ describe 'r::repo' do
   end
 
   context 'debian' do
-    it_behaves_like 'debian', 'Debian', 'wheezy'
-    it_behaves_like 'debian', 'Ubuntu', 'precise'
+    it_behaves_like 'debian', 'Debian', 'wheezy', 'wheezy-cran3'
+    it_behaves_like 'debian', 'Ubuntu', 'precise', 'precise'
   end
 
 end

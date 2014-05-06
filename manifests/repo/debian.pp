@@ -33,10 +33,19 @@ class r::repo::debian(
             }
           }
           'debian': {
+            case $codename {
+              'wheezy': {
+                $rel_name = 'wheezy-cran3'
+              }
+              'squeeze': {
+                $rel_name = 'squeeze-cran3'
+              }
+            }
+
             apt::source { 'r-project':
               location    => "http://cran.r-project.org/bin/linux/${os}",
               # the '/' must be present, otherwise repo name is required
-              release     => "${codename}/",
+              release     => "${rel_name}/",
               repos       => '', # default repo is main (not present at cran)
               include_src => false,
               key         => '381BA480',
