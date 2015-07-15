@@ -7,5 +7,5 @@ summary 'Module for managing R project installation'
 description 'Installs packages for r-project repositories.'
 project_page 'https://github.com/deric/deric-r'
 
-dependency 'puppetlabs/stdlib', '>= 2.0.0'
-dependency 'puppetlabs/apt', '>= 1.0.0'
+dependency 'puppetlabs-stdlib', '>= 2.0'
+dependency 'puppetlabs-apt', '>= 2.0'
