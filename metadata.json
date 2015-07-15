@@ -1,0 +1,15 @@
+{
+  "name": "deric-r",
+  "version": "0.1.0",
+  "author": "deric",
+  "summary": "Module for managing R project installation",
+  "license": "Apache-2.0",
+  "source": "https://github.com/deric/deric-r",
+  "project_page": "https://github.com/deric/deric-r",
+  "issues_url": "https://github.com/deric/deric-r/issues",
+  "description": "Installs packages for r-project repositories.",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 2.0.0"},
+    {"name":"puppetlabs-apt","version_requirement":">= 2.0.0"}
+  ]
+}
